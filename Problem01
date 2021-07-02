@@ -1,1 +1,38 @@
+begin
+	using Pkg
+	Pkg.activate("project.html")
+	using PlutoUI
+end
+
+using QMDP
+using POMDPs 
+using QuickPOMDPs 
+using POMDPModelTools 
+using POMDPSimulators
+
+tr = QuickPOMDP(
+
+    states = ["left", "right"],
+    actions = ["open_left", "open_right", "open_center"],
+
+    function rewards(s, a)
+        if a == "left" #straight to treasure room
+            return 10
+        else if a =="center" # detour to two more rooms
+            return 5
+        else if a == "right"# straight to the empty room
+            return -10
+        else 
+            with_terminal() do 
+                println("Unknown option.")
+                
+            end
+        end
+    end
+)
+
+sol = QMDPSolver()
+policy = solve(sol, tr)
+
+
 
