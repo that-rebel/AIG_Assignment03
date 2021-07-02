@@ -15,14 +15,18 @@ tr = QuickPOMDP(
     states = ["left", "right"],
     actions = ["open_left", "open_right", "open_center"],
     
-    function transition()
+    function transition(s, a) 
+    	if a == "open_center" && a == "open_left"
+	return 
 
     function rewards(s, a)
-        if a == "left" #straight to treasure room
+        if a == "open_left" #straight to treasure room
             return 10
-        else if a =="center" # detour to two more rooms
-            return 5
-        else if a == "right"# straight to the empty room
+        else if a =="open_center" && a=="open_left" #detour to two more rooms
+            return 7
+	else if a == "open_center" && a == "open_right" 
+		return 3
+        else if a == "open_right" #straight to the empty room
             return -10
         else 
             with_terminal() do 
