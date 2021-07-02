@@ -14,6 +14,8 @@ tr = QuickPOMDP(
 
     states = ["left", "right"],
     actions = ["open_left", "open_right", "open_center"],
+    
+    function transition()
 
     function rewards(s, a)
         if a == "left" #straight to treasure room
@@ -24,14 +26,14 @@ tr = QuickPOMDP(
             return -10
         else 
             with_terminal() do 
-                println("Unknown option.")
+                println("Unknown action.")
                 
             end
         end
     end
 )
 
-sol = QMDPSolver()
+sol = QMDPSolver(tr)
 policy = solve(sol, tr)
 
 
