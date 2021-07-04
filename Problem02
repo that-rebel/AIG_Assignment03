@@ -1,31 +1,30 @@
 begin
 	using Pkg
 	Pkg.activate("project.html")
-    using Pkg; 
-    Pkg.add("https://github.com/QuantEcon/Games.jl")
 	using PlutoUI
 end
 
 using Games
 
-matching_pennies_bimatrix = Array{Float64}(undef, 2, 2, 2)
-matching_pennies_bimatrix[1, 1, :] = [1, -1]  # payoff profile for action profile (1, 1)
-matching_pennies_bimatrix[1, 2, :] = [-1, 1]
-matching_pennies_bimatrix[2, 1, :] = [-1, 1]
-matching_pennies_bimatrix[2, 2, :] = [1, -1]
-g_MP = NormalFormGame(matching_pennies_bimatrix)
+matching_pennies = Array{Float64}(undef, 2, 2, 2)
+matching_pennies[1, 1, :] = [1, -1]  # payoff profile for action profile (1, 1)
+matching_pennies[1, 2, :] = [-1, 1]
+matching_pennies[2, 1, :] = [-1, 1]
+matching_pennies[2, 2, :] = [1, -1]
 
-g_MP.players[1]  # Player instance for player 1
-g_MP.players[2]  # Player instance for player 2
+game = NormalFormGame(matching_pennies)
 
-g_MP.players[1].payoff_array  # Player 1's payoff array
-g_MP.players[2].payoff_array  # Player 2's payoff array
+game.player[1]  # Player instance for player 1
+game.player[2]  # Player instance for player 2
 
-g_MP[1, 1]  # payoff profile for action profile (1, 1)
+game.player[1].payoff_array  # Player 1's payoff array
+game.player[2].payoff_array  # Player 2's payoff array
 
-coordination_game_matrix = [4 0;
-                            3 2]  # square matrix
-g_Coo = NormalFormGame(coordination_game_matrix)
+game[1, 1]  # payoff profile for action profile (1, 1)
 
-g_Coo.players[1].payoff_array  # Player 1's payoff array
-g_Coo.players[2].payoff_array  # Player 2's payoff array
+coordination_matrix = [4 0;
+                       3 2]  # square matrix
+game_coord = NormalFormGame(coordination_matrix)
+
+game_coord.player[1].payoff_array  # Player 1's payoff array
+game_coord.player[2].payoff_array  # Player 2's payoff array
