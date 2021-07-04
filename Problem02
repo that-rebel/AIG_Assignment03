@@ -21,10 +21,3 @@ game.player[1].payoff_array  # Player 1's payoff array
 game.player[2].payoff_array  # Player 2's payoff array
 
 game[1, 1]  # payoff profile for action profile (1, 1)
-
-coordination_matrix = [4 0;
-                       3 2]  # square matrix
-game_coord = NormalFormGame(coordination_matrix)
-
-game_coord.player[1].payoff_array  # Player 1's payoff array
-game_coord.player[2].payoff_array  # Player 2's payoff array
