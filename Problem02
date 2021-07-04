@@ -1,14 +1,12 @@
 begin
 	using Pkg
 	Pkg.activate("project.html")
+    using Pkg; 
+    Pkg.add("https://github.com/QuantEcon/Games.jl")
 	using PlutoUI
 end
 
-module Games
-
-using QuantEcon
-using Combinatorics
-using Parameters
+using Games
 
 matching_pennies_bimatrix = Array{Float64}(undef, 2, 2, 2)
 matching_pennies_bimatrix[1, 1, :] = [1, -1]  # payoff profile for action profile (1, 1)
